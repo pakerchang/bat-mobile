@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import Providers from "./lib/Providers";
+import { LayoutPublic } from "./layouts/index.style";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,9 +11,11 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="zh-TW">
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <LayoutPublic>{children}</LayoutPublic>
+        </Providers>
       </body>
     </html>
   );
