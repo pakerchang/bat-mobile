@@ -11,8 +11,8 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-TW">
-      <body className={inter.className}>
+    <html lang="zh-Hant-TW">
+      <body className={inter.className} suppressHydrationWarning={true}>
         <Providers>
           <LayoutPublic>{children}</LayoutPublic>
         </Providers>
