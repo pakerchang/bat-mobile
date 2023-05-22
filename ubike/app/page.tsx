@@ -1,10 +1,9 @@
 "use client";
-import { Button } from "@mui/material";
-
+import Header from "@/components/shared/header";
 export default function Home() {
   return (
     <div>
-      <Button variant="contained">testing</Button>
+      <Header />
     </div>
   );
 }
