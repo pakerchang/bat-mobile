@@ -8,12 +8,16 @@ const navbarList = ["使用說明", "收費方式", "站點資訊", "最新消�
 function Header() {
   return (
     <Box display="flex" width="100%">
-      <AppBar component="nav" sx={{ backgroundColor: "#fff", padding: "0 124px" }}>
+      <AppBar
+        component="nav"
+        position="sticky"
+        sx={{ backgroundColor: "#fff", padding: "0 124px", boxShadow: "none", borderBottom: "1px solid #EBEBEB" }}
+      >
         <Toolbar>
           <Box sx={{ margin: "6px 50px 0 0" }}>
             <Image src={Logo} alt="logo" />
           </Box>
-          <Box display="flex" width="80%" height="100%">
+          <Box display="flex" width="80%" height="100%" alignItems="center">
             {navbarList.map((item) => (
               <Link
                 key={item}
@@ -37,7 +41,9 @@ function Header() {
             size="medium"
             sx={{ width: "85px", height: "40px", borderRadius: "100px" }}
           >
-            <Typography color="white">登入</Typography>
+            <Typography color="white" align="center">
+              登入
+            </Typography>
           </Button>
         </Toolbar>
       </AppBar>
