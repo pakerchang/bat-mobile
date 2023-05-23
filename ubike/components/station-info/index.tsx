@@ -3,6 +3,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import SearchBar from "./SearchBar";
 import LocationList from "./LocationList";
+import jsonData from "../../app/assets/station-info/ubike.json";
 
 function StationInfo() {
   return (
