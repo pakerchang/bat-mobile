@@ -2,10 +2,15 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import SearchBar from "./SearchBar";
-import LocationList from "./LocationList";
+import AreaList from "./AreaList";
 import jsonData from "../../app/assets/station-info/ubike.json";
 
-function StationInfo() {
+interface StationInfoProps<T> {
+  data: T;
+}
+
+function StationInfo<T>({ data }: StationInfoProps<T>) {
+  console.log(data, "stations");
   return (
     <Box display="flex" flexDirection="column" px="124px">
       <Box my="32px">
@@ -17,7 +22,7 @@ function StationInfo() {
         <SearchBar />
       </Box>
       <Box>
-        <LocationList />
+        <AreaList data={data} />
       </Box>
     </Box>
   );

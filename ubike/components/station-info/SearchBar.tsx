@@ -7,8 +7,20 @@ type SelectionDataType<T> = {
   stations: T[];
 };
 
-function SearchBar<T>({ data }: { data: T[] }) {
-  const [selectionData, setSelectionData] = useState<SelectionDataType<unknown>>(data);
+interface SearchBarProps<T> {
+  city: string[];
+  areaData: T[];
+  handleSearch: () => T[];
+}
+
+function SearchBar<T>({ city, areaData }: SearchBarProps) {
+  const [selectionData, setSelectionData] = useState<SelectionDataType>(
+    areaData |
+      {
+        city: [],
+        stations: [],
+      }
+  );
 
   const comboSearch = () => {
     // handling select to update Autocomplete
