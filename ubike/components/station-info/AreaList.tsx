@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Banner from "@/app/assets/banner.png";
-import { Box, Grid, Checkbox, FormGroup, FormControlLabel, Typography } from "@mui/material";
+import { Box, Grid, Checkbox, FormGroup, FormControlLabel, Typography, Hidden } from "@mui/material";
 import { NewDataType } from "../types";
 
 interface AreaListProps {
@@ -13,7 +13,7 @@ function AreaList({ data }: AreaListProps) {
   const handleSelectAll = () => setSelectAll(!selectAll);
 
   return (
-    <Box width="100%" display="flex" justifyContent="space-between">
+    <Box display="flex" justifyContent="space-between">
       <FormGroup>
         <Box>
           <FormControlLabel
@@ -24,7 +24,7 @@ function AreaList({ data }: AreaListProps) {
             onChange={handleSelectAll}
           />
         </Box>
-        <Grid container width="50%" columnSpacing={2}>
+        <Grid container width="500px">
           {data?.map((item) => (
             <Grid item sm={3} xs={4} key={item?.area}>
               <FormControlLabel
@@ -36,9 +36,11 @@ function AreaList({ data }: AreaListProps) {
           ))}
         </Grid>
       </FormGroup>
-      <Box alignSelf="flex-end" width="50%" mr="86px">
-        <Image src={Banner} alt="banner" />
-      </Box>
+      <Hidden mdDown>
+        <Box alignSelf="flex-end" mr="86px">
+          <Image src={Banner} alt="banner" />
+        </Box>
+      </Hidden>´
     </Box>
   );
 }
