@@ -1,26 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import { Box, Select, FormControl, InputLabel, MenuItem, Autocomplete, TextField } from "@mui/material";
-
-type SelectionDataType<T> = {
-  city: T[];
-  stations: T[];
-};
+import { NewDataType } from "../shared/types/index";
 
 interface SearchBarProps<T> {
   city: string[];
-  areaData: T[];
+  areaData: NewDataType;
   handleSearch: () => T[];
 }
 
 function SearchBar<T>({ city, areaData }: SearchBarProps) {
-  const [selectionData, setSelectionData] = useState<SelectionDataType>(
-    areaData |
-      {
-        city: [],
-        stations: [],
-      }
-  );
+  const [selectData, setSelectData] = useState<NewDataType[]>(areaData);
 
   const comboSearch = () => {
     // handling select to update Autocomplete
@@ -33,9 +23,15 @@ function SearchBar<T>({ city, areaData }: SearchBarProps) {
       </FormControl>
       <Autocomplete
         id="search-station"
-        options={selectionData?.stations}
+        options={areaData}
+        getOptionLabel={(option) => option.area}
+        renderOption={(props, option) => (
+          <li {...props} key={option.area}>
+            {option.area}
+          </li>
+        )}
         renderInput={(params) => <TextField {...params} label="搜尋站點" />}
-        disabled={!selectionData?.stations && true}
+        // disabled={!selectionData?.area && true}
         sx={{ width: "277px", height: "40px", marginLeft: "16px" }}
       />
     </Box>

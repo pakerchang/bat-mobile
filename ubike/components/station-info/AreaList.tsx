@@ -19,9 +19,8 @@ function AreaList<T>({ data }: { data: T[] }) {
         />
         <Grid container width="500px" columnSpacing={3}>
           {data?.map((item: T) => (
-            <Grid item sm={3} xs={4}>
+            <Grid item sm={3} xs={4} key={(item as any)?.area}>
               <FormControlLabel
-                key={(item as any)?.area}
                 label={<Typography noWrap>{(item as any)?.area}</Typography>}
                 control={<Checkbox checked={selectAll && true} />}
                 color="primary"

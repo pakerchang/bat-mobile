@@ -10,7 +10,6 @@ interface StationInfoProps<T> {
 }
 
 function StationInfo<T>({ data }: StationInfoProps<T>) {
-  console.log(data, "stations");
   return (
     <Box display="flex" flexDirection="column" px="124px">
       <Box my="32px">
@@ -19,7 +18,7 @@ function StationInfo<T>({ data }: StationInfoProps<T>) {
         </Typography>
       </Box>
       <Box display="flex" alignItems="center">
-        <SearchBar />
+        <SearchBar areaData={data} />
       </Box>
       <Box>
         <AreaList data={data} />

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { NewDataType, FilterDataType } from "@/components/shared/types/index";
 
 type ItemDataType = {
   sna: string;
@@ -9,20 +10,6 @@ type ItemDataType = {
   act: string;
   [key: string]: any;
 };
-
-interface FilterDataType {
-  city: string;
-  area: string;
-  stationsName: string;
-  rentBike: number; // sbi
-  emptyPosition: number; // bemp
-  stationActive: boolean; // act
-}
-
-interface NewDataType {
-  area: string;
-  areaData: FilterDataType[];
-}
 
 function useTaipeiData<T extends ItemDataType>(originData: T[]): NewDataType[] {
   const [data, setData] = useState<NewDataType[]>([]);
