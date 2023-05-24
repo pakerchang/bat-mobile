@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { NewDataType, FilterDataType } from "@/components/shared/types/index";
+import { NewDataType, FilterDataType } from "@/components/types/index";
 
 type ItemDataType = {
+  sno: string;
   sna: string;
   sarea: string;
   bemp: string;
@@ -28,9 +29,10 @@ function useTaipeiData<T extends ItemDataType>(originData: T[]): NewDataType[] {
    */
   function dataCleaning(data: T[]) {
     return data.map((item) => ({
+      stationsUID: Number(item.sno),
       city: "台北市",
       area: item.sarea,
-      stationsName: item.sna.replace(/YouBike2\.0_/g, ""),
+      stationsName: item.sna.replace(/[^\u4e00-\u9fa5]/g, ""),
       rentBike: Number(item.sbi),
       emptyPosition: Number(item.bemp),
       stationActive: item.act === "1" ? true : false,
