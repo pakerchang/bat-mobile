@@ -14,7 +14,7 @@ interface StationInfoProps {
 function StationInfo({ cities, data }: StationInfoProps) {
   const theme = useTheme();
   return (
-    <Box display="flex" flexDirection="column" px={theme.breakpoints.up("md") ? "124px" : ""}>
+    <Box display="flex" flexDirection="column" sx={{ px: "124px", [theme.breakpoints.down("md")]: { px: "32px" } }}>
       <Box my="32px">
         <Typography color="primary" sx={{ fontSize: "24px", fontWeight: 700 }}>
           站點資訊
