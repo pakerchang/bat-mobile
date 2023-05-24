@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import Providers from "./lib/Providers";
-import { LayoutPublic } from "./layouts/index.style";
 
 const inter = Inter({ subsets: ["latin"] });
 
