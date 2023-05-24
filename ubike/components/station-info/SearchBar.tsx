@@ -9,6 +9,7 @@ import {
   Autocomplete,
   TextField,
   SelectChangeEvent,
+  useTheme,
 } from "@mui/material";
 import { NewDataType } from "../types";
 
@@ -19,6 +20,7 @@ interface SearchBarProps<T> {
 }
 
 function SearchBar<T>({ cities, areaData }: SearchBarProps<T>) {
+  const theme = useTheme();
   const [selectData, setSelectData] = useState<NewDataType[]>(areaData);
   const [selectCity, setCity] = useState("");
 
@@ -28,8 +30,25 @@ function SearchBar<T>({ cities, areaData }: SearchBarProps<T>) {
     // handling select to update Autocomplete
   };
   return (
-    <Box display="flex" mb="32px">
-      <FormControl sx={{ width: "175px", height: "40px" }}>
+    <Box
+      display="flex"
+      mb={theme.breakpoints.down("sm") ? "24px" : "32px"}
+      sx={{
+        [theme.breakpoints.down("sm")]: {
+          height: "116px",
+          flexDirection: "column-reverse",
+          alignItems: "center",
+          justifyContent: "flex-end",
+        },
+      }}
+    >
+      <FormControl
+        sx={{
+          width: "175px",
+          height: "40px",
+          [theme.breakpoints.down("sm")]: { width: "311px", marginTop: "30px" },
+        }}
+      >
         <InputLabel id="search-city">選擇縣市</InputLabel>
         <Select labelId="search-city" label="選擇縣市" value={selectCity} onChange={onSelectCity}>
           {cities.map((item) => (
@@ -39,6 +58,7 @@ function SearchBar<T>({ cities, areaData }: SearchBarProps<T>) {
           ))}
         </Select>
       </FormControl>
+
       <Autocomplete
         id="search-station"
         options={areaData}
@@ -50,7 +70,12 @@ function SearchBar<T>({ cities, areaData }: SearchBarProps<T>) {
         )}
         renderInput={(params) => <TextField {...params} label="搜尋站點" />}
         disabled={!selectData && true}
-        sx={{ width: "277px", height: "40px", marginLeft: "16px" }}
+        sx={{
+          width: "277px",
+          height: "40px",
+          marginLeft: "16px",
+          [theme.breakpoints.down("sm")]: { width: "311px", marginLeft: "0px" },
+        }}
       />
     </Box>
   );
