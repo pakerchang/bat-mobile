@@ -15,13 +15,15 @@ function AreaList({ data }: AreaListProps) {
   return (
     <Box width="100%" display="flex" justifyContent="space-between">
       <FormGroup>
-        <FormControlLabel
-          label="全部勾選"
-          control={<Checkbox />}
-          color="primary"
-          checked={selectAll}
-          onChange={handleSelectAll}
-        />
+        <Box>
+          <FormControlLabel
+            label="全部勾選"
+            control={<Checkbox />}
+            color="primary"
+            checked={selectAll}
+            onChange={handleSelectAll}
+          />
+        </Box>
         <Grid container width="50%" columnSpacing={2}>
           {data?.map((item) => (
             <Grid item sm={3} xs={4} key={item?.area}>
