@@ -3,14 +3,15 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import SearchBar from "./SearchBar";
 import AreaList from "./AreaList";
-import jsonData from "../../app/assets/station-info/ubike.json";
+import StationTable from "./StationTable";
+import { NewDataType } from "../types";
 
-interface StationInfoProps<T> {
-  data: T;
+interface StationInfoProps {
+  cities: string[];
+  data: NewDataType[];
 }
 
-function StationInfo<T>({ data }: StationInfoProps<T>) {
-  console.log(data, "stations");
+function StationInfo({ cities, data }: StationInfoProps) {
   return (
     <Box display="flex" flexDirection="column" px="124px">
       <Box my="32px">
@@ -19,10 +20,13 @@ function StationInfo<T>({ data }: StationInfoProps<T>) {
         </Typography>
       </Box>
       <Box display="flex" alignItems="center">
-        <SearchBar />
+        <SearchBar cities={cities} areaData={data} />
       </Box>
-      <Box>
+      <Box mb="40px">
         <AreaList data={data} />
+      </Box>
+      <Box mb="44px">
+        <StationTable data={data} />
       </Box>
     </Box>
   );

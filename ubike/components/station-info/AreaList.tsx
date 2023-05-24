@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Banner from "@/app/assets/banner.png";
 import { Box, Grid, Checkbox, FormGroup, FormControlLabel, Typography } from "@mui/material";
+import { NewDataType } from "../types";
 
-function AreaList<T>({ data }: { data: T[] }) {
+interface AreaListProps {
+  data: NewDataType[];
+}
+
+function AreaList({ data }: AreaListProps) {
   const [selectAll, setSelectAll] = useState<boolean>(true);
   const handleSelectAll = () => setSelectAll(!selectAll);
 
@@ -18,11 +23,10 @@ function AreaList<T>({ data }: { data: T[] }) {
           onChange={handleSelectAll}
         />
         <Grid container width="500px" columnSpacing={3}>
-          {data?.map((item: T) => (
-            <Grid item sm={3} xs={4}>
+          {data?.map((item) => (
+            <Grid item sm={3} xs={4} key={item?.area}>
               <FormControlLabel
-                key={(item as any)?.area}
-                label={<Typography noWrap>{(item as any)?.area}</Typography>}
+                label={<Typography noWrap>{item?.area}</Typography>}
                 control={<Checkbox checked={selectAll && true} />}
                 color="primary"
               />
