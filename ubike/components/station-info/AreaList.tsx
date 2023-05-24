@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Banner from "@/app/assets/banner.png";
-import { Box, Grid, Checkbox, FormGroup, FormControlLabel, Typography, Hidden } from "@mui/material";
+import { Box, Grid, Checkbox, FormGroup, FormControlLabel, Typography, Hidden, useTheme } from "@mui/material";
 import { NewDataType } from "../types";
 
 interface AreaListProps {
@@ -9,6 +9,7 @@ interface AreaListProps {
 }
 
 function AreaList({ data }: AreaListProps) {
+  const theme = useTheme();
   const [selectAll, setSelectAll] = useState<boolean>(true);
   const handleSelectAll = () => setSelectAll(!selectAll);
 
@@ -24,7 +25,7 @@ function AreaList({ data }: AreaListProps) {
             onChange={handleSelectAll}
           />
         </Box>
-        <Grid container width="500px">
+        <Grid container sx={{ width: "500px", [theme.breakpoints.down("md")]: { width: "311px" } }}>
           {data?.map((item) => (
             <Grid item sm={3} xs={4} key={item?.area}>
               <FormControlLabel

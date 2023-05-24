@@ -9,6 +9,7 @@ import {
   TableCell,
   TablePagination,
   Typography,
+  Paper,
 } from "@mui/material";
 import { NewDataType, FilterDataType } from "../types";
 
