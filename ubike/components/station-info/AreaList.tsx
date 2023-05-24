@@ -13,7 +13,7 @@ function AreaList({ data }: AreaListProps) {
   const handleSelectAll = () => setSelectAll(!selectAll);
 
   return (
-    <Box display="flex" justifyContent="space-between">
+    <Box width="100%" display="flex" justifyContent="space-between">
       <FormGroup>
         <FormControlLabel
           label="全部勾選"
@@ -22,7 +22,7 @@ function AreaList({ data }: AreaListProps) {
           checked={selectAll}
           onChange={handleSelectAll}
         />
-        <Grid container width="500px" columnSpacing={3}>
+        <Grid container width="50%" columnSpacing={2}>
           {data?.map((item) => (
             <Grid item sm={3} xs={4} key={item?.area}>
               <FormControlLabel
@@ -34,7 +34,7 @@ function AreaList({ data }: AreaListProps) {
           ))}
         </Grid>
       </FormGroup>
-      <Box alignSelf="flex-end" mr="68px">
+      <Box alignSelf="flex-end" width="50%" mr="86px">
         <Image src={Banner} alt="banner" />
       </Box>
     </Box>

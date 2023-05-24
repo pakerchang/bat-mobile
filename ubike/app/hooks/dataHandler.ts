@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function useDataHandler() {
   // 1. 情境選擇縣市後 改變的資料有 arealist,
