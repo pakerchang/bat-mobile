@@ -36,11 +36,11 @@ function AreaList({ data }: AreaListProps) {
           ))}
         </Grid>
       </FormGroup>
-      <Hidden mdDown>
+      <Hidden lgDown>
         <Box alignSelf="flex-end" mr="86px">
           <Image src={Banner} alt="banner" />
         </Box>
-      </Hidden>´
+      </Hidden>
     </Box>
   );
 }
