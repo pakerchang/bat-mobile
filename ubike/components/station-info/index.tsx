@@ -12,31 +12,43 @@ interface StationInfoProps {
 }
 
 type FnCityType = (city: string) => void;
-
 type FnAreaListType = (newData?: NewDataType[], checkboxIdx?: number, selectAll?: boolean) => void;
+type FnStationSearchType = () => void;
 
 function StationInfo({ cities, data }: StationInfoProps) {
   const theme = useTheme();
   const [tableData, setTableData] = useState<NewDataType[]>([]);
 
   const handleCitySearch: FnCityType = (city) => {
-
+    console.log(city);
   };
 
   const handleAreaListSelect: FnAreaListType = (newData, checkboxIdx, selectAll) => {
     if (selectAll && typeof newData !== "undefined") {
-      const tempData = newData.map((item) => ({ ...item, area: { ...item.area, checked: true } }));
+      setTableData(data);
+      return;
+    }
+
+    if (!selectAll && typeof newData !== "undefined") {
+      const tempData = newData.map((item) => ({ ...item, area: { ...item.area, checked: false }, areaData: [] }));
       setTableData(tempData);
     }
 
     if (newData && typeof checkboxIdx !== "undefined") {
       const tempData = newData.map((item, idx) =>
-        idx === checkboxIdx ? { ...item, area: { ...item.area, checked: !item.area.checked } } : item
+        idx === checkboxIdx
+          ? {
+              ...item,
+              area: { ...item.area, checked: !item.area.checked },
+              areaData: !item.area.checked && item.areaData.length === 0 ? data[idx].areaData : [],
+            }
+          : item
       );
-
       setTableData(tempData);
     }
   };
+
+  const handleStationSearch: FnStationSearchType = () => {};
 
   useEffect(() => {
     if (data.length !== 0) setTableData(data);

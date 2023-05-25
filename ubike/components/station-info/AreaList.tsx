@@ -27,6 +27,9 @@ function AreaList({ data, handleList }: AreaListProps) {
     if (selectAll === false) {
       handleList(data, undefined, true);
       setSelectAll(!selectAll);
+    } else {
+      handleList(data, undefined, false);
+      setSelectAll(false);
     }
   };
 

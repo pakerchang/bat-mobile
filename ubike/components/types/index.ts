@@ -14,5 +14,5 @@ export interface FilterDataType {
  */
 export interface NewDataType {
   area: { name: string, checked: boolean };
-  areaData: FilterDataType;
+  areaData: FilterDataType[]
 }

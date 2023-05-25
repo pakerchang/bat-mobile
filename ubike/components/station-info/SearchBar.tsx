@@ -16,19 +16,19 @@ import { NewDataType } from "../types";
 interface SearchBarProps<T> {
   cities: string[];
   areaData: NewDataType;
-  handleSearch: () => T[];
+  handleSearch: (city: string) => void;
 }
 
-function SearchBar<T>({ cities, areaData }: SearchBarProps<T>) {
+function SearchBar<T>({ cities, areaData, handleSearch }: SearchBarProps<T>) {
   const theme = useTheme();
   const [selectData, setSelectData] = useState<NewDataType[]>(areaData);
   const [selectCity, setCity] = useState("");
 
-  const onSelectCity = (e: SelectChangeEvent) => setCity(e.target.value);
-
-  const comboSearch = () => {
-    // handling select to update Autocomplete
+  const onSelectCity = (e: SelectChangeEvent) => {
+    setCity(e.target.value);
+    handleSearch(e.target.value);
   };
+
   return (
     <Box
       display="flex"
