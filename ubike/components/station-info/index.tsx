@@ -16,10 +16,12 @@ type FnAreaListType = (newData?: NewDataType[], checkboxIdx?: number, selectAll?
 
 function StationInfo({ cities, data }: StationInfoProps) {
   const theme = useTheme();
+  const [areaSelectStatus, setSelectStatus] = useState<boolean>(true);
   const [tableData, setTableData] = useState<NewDataType[]>([]);
 
   const handleCitySearch: FnCityType = (city) => {
-    console.log(city);
+    if (city !== "台北市") return setTableData([]);
+    setTableData(data);
   };
 
   const handleStationSearch = (searchIdx: number): void => {
@@ -27,21 +29,31 @@ function StationInfo({ cities, data }: StationInfoProps) {
       const tempData = tableData.map((item, index) =>
         index === searchIdx ? item : { ...item, area: { ...item.area, checked: false }, areaData: [] }
       );
+      setSelectStatus(false);
       setTableData(tempData);
     }
   };
 
   const handleAreaListSelect: FnAreaListType = (newData, checkboxIdx, selectAll) => {
+    /**
+     * 全部勾選
+     */
     if (selectAll && typeof newData !== "undefined") {
+      setSelectStatus(true);
       setTableData(data);
       return;
     }
-
+    /**
+     * 取消全部勾選
+     */
     if (!selectAll && typeof newData !== "undefined") {
       const tempData = newData.map((item) => ({ ...item, area: { ...item.area, checked: false }, areaData: [] }));
+      setSelectStatus(false);
       setTableData(tempData);
     }
-
+    /**
+     * 取消部分選取
+     */
     if (newData && typeof checkboxIdx !== "undefined") {
       const tempData = newData.map((item, idx) =>
         idx === checkboxIdx
@@ -76,7 +88,7 @@ function StationInfo({ cities, data }: StationInfoProps) {
         />
       </Box>
       <Box mb="40px">
-        <AreaList data={tableData} handleList={handleAreaListSelect} />
+        <AreaList selectAll={areaSelectStatus} data={tableData} handleList={handleAreaListSelect} />
       </Box>
       <Box mb="44px">
         <StationTable data={tableData} />
