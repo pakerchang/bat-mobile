@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NewDataType, FilterDataType } from "@/components/types/index";
+import { TableDataType, StationDataType } from "@/components/types/index";
 
 type ItemDataType = {
   sno: string;
@@ -11,8 +11,8 @@ type ItemDataType = {
   [key: string]: any;
 };
 
-function useTaipeiData<T extends ItemDataType>(originData: T[]): NewDataType[] {
-  const [data, setData] = useState<NewDataType[]>([]);
+function useTaipeiData<T extends ItemDataType>(originData: T[]): StationDataType[] {
+  const [data, setData] = useState<StationDataType[]>([]);
 
   /**
    * @description 處理原始資料並取得台北市的行政區清單
@@ -47,7 +47,7 @@ function useTaipeiData<T extends ItemDataType>(originData: T[]): NewDataType[] {
       const splitData = areaResult.reduce((result, areaObj) => {
         result.push({ area: areaObj, areaData: tempData.filter((item) => item.area === areaObj.name) });
         return result;
-      }, [] as { area: { name: string; checked: boolean }; areaData: FilterDataType[] }[]);
+      }, [] as { area: { name: string; checked: boolean }; areaData: TableDataType[] }[]);
 
       setData(splitData);
     }
