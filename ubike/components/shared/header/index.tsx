@@ -62,7 +62,7 @@ function Header() {
           </Box>
 
           <Hidden smDown>
-            <Box display="flex" width="80%" height="100%" alignItems="center">
+            <Box display="flex" width="100%" height="100%" alignItems="center">
               {navbarList.map((item) => (
                 <Link href={item.url} key={item.title}>
                   <Typography
@@ -81,23 +81,25 @@ function Header() {
                 </Link>
               ))}
             </Box>
-            <Button
-              variant="contained"
-              color="primary"
-              size="medium"
-              sx={{ width: "85px", height: "40px", borderRadius: "100px" }}
-            >
-              <Typography
-                color="white"
-                align="center"
-                sx={{
-                  fontSize: "18px",
-                  [theme.breakpoints.down("lg")]: { fontSize: "14px" },
-                }}
+            <Box>
+              <Button
+                variant="contained"
+                color="primary"
+                size="medium"
+                sx={{ width: "85px", height: "40px", borderRadius: "100px" }}
               >
-                登入
-              </Typography>
-            </Button>
+                <Typography
+                  color="white"
+                  align="center"
+                  sx={{
+                    fontSize: "18px",
+                    [theme.breakpoints.down("lg")]: { fontSize: "14px" },
+                  }}
+                >
+                  登入
+                </Typography>
+              </Button>
+            </Box>
           </Hidden>
           <Hidden smUp>
             <IconButton aria-label="open drawer" onClick={handleDrawer}>
