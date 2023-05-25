@@ -53,7 +53,7 @@ function StationTable({ data: data }: StationTableProps) {
               <TableCell key={item} align="center">
                 <Typography
                   color="white"
-                  sx={{ fontSize: "16px", fontWeight: 500, [theme.breakpoints.down("sm")]: { fontSize: "16px" } }}
+                  sx={{ fontSize: "18px", fontWeight: 500, [theme.breakpoints.down("sm")]: { fontSize: "16px" } }}
                 >
                   {item}
                 </Typography>
@@ -65,22 +65,22 @@ function StationTable({ data: data }: StationTableProps) {
           {(rowsPerPage > 0 ? listData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : listData).map(
             (list, index: number) => (
               <TableRow key={list.stationsUID} sx={{ bgcolor: index % 2 === 0 ? "#f7f7f7" : "f5f5f5" }}>
-                <TableCell align="center" size={theme.breakpoints.down("sm") ? "small" : "medium"}>
+                <TableCell align="center">
                   <Typography sx={{ fontSize: "16px", [theme.breakpoints.down("sm")]: { fontSize: "14px" } }}>
                     {list.city}
                   </Typography>
                 </TableCell>
-                <TableCell align="center" size={theme.breakpoints.down("sm") ? "small" : "medium"}>
+                <TableCell align="center">
                   <Typography sx={{ fontSize: "16px", [theme.breakpoints.down("sm")]: { fontSize: "14px" } }}>
                     {list.area}
                   </Typography>
                 </TableCell>
-                <TableCell align="center" size={theme.breakpoints.down("sm") ? "small" : "medium"}>
+                <TableCell align="center">
                   <Typography sx={{ fontSize: "16px", [theme.breakpoints.down("sm")]: { fontSize: "14px" } }}>
                     {list.stationsName}
                   </Typography>
                 </TableCell>
-                <TableCell align="center" size={theme.breakpoints.down("sm") ? "small" : "medium"}>
+                <TableCell align="center">
                   <Typography
                     sx={{ fontSize: "16px", [theme.breakpoints.down("sm")]: { fontSize: "14px" } }}
                     fontWeight={700}
@@ -89,7 +89,7 @@ function StationTable({ data: data }: StationTableProps) {
                     {list.rentBike}
                   </Typography>
                 </TableCell>
-                <TableCell align="center" size={theme.breakpoints.down("sm") ? "small" : "medium"}>
+                <TableCell align="center">
                   <Typography
                     sx={{ fontSize: "16px", [theme.breakpoints.down("sm")]: { fontSize: "14px" } }}
                     fontWeight={700}

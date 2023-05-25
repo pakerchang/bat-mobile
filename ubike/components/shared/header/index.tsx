@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import {
   AppBar,
   Box,
   Toolbar,
   Typography,
-  Link,
   Drawer,
   Button,
   List,
@@ -18,7 +18,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Logo from "@/app/assets/logo.png";
 
-const navbarList = ["使用說明", "收費方式", "站點資訊", "最新消息", "活動專區"];
+const navbarList = [
+  { title: "使用說明", url: "https://github.com/pakerchang/bat-mobile/tree/master/ubike" },
+  { title: "收費方式", url: "/payment" },
+  { title: "站點資訊", url: "/information" },
+  { title: "最新消息", url: "/news" },
+  { title: "活動專區", url: "/event" },
+];
 
 function Header() {
   const [drawer, setDrawer] = useState(false);
@@ -58,21 +64,19 @@ function Header() {
           <Hidden smDown>
             <Box display="flex" width="80%" height="100%" alignItems="center">
               {navbarList.map((item) => (
-                <Link
-                  key={item}
-                  sx={{
-                    cursor: "pointer",
-                    color: theme.palette.secondary.main,
-                    textDecoration: "none",
-                    marginLeft: "40px",
-                    "&:hover": {
-                      color: theme.palette.primary.main,
-                    },
-                    [theme.breakpoints.down("md")]: { marginLeft: "20px" },
-                  }}
-                >
-                  <Typography sx={{ fontSize: "18px", [theme.breakpoints.down("md")]: { fontSize: "14px" } }}>
-                    {item}
+                <Link href={item.url} key={item.title}>
+                  <Typography
+                    sx={{
+                      fontSize: "18px",
+                      color: theme.palette.secondary.main,
+                      marginLeft: "40px",
+                      "&:hover": {
+                        color: theme.palette.primary.main,
+                      },
+                      [theme.breakpoints.down("md")]: { fontSize: "14px", marginLeft: "20px" },
+                    }}
+                  >
+                    {item.title}
                   </Typography>
                 </Link>
               ))}
@@ -95,7 +99,6 @@ function Header() {
               </Typography>
             </Button>
           </Hidden>
-
           <Hidden smUp>
             <IconButton aria-label="open drawer" onClick={handleDrawer}>
               {!drawer ? <MenuIcon color="primary" /> : <CloseIcon color="primary" />}
@@ -113,43 +116,32 @@ function Header() {
           sx={{ height: "100%" }}
           PaperProps={{ sx: { height: "100%", bgcolor: theme.palette.primary.main, marginTop: "72px" } }}
         >
-          <List
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              paddingTop: "32px",
-              width: "100%",
-            }}
-          >
+          <List sx={{ marginTop: "32px", marginLeft: "32px", marginBottom: "16px" }}>
             {navbarList.map((item) => (
-              <ListItem key={item}>
-                <Link
-                  sx={{
-                    cursor: "pointer",
-                    color: "white",
-                    textDecoration: "none",
-                    marginLeft: "32px",
-                    marginBottom: "32px",
-                    "&:hover": {
-                      color: theme.palette.secondary.main,
-                    },
-                    [theme.breakpoints.down("md")]: { marginLeft: "20px" },
-                  }}
-                >
-                  <Typography fontSize="18px" fontWeight="500">
-                    {item}
+              <ListItem key={item.title}>
+                <Link href={item.url}>
+                  <Typography
+                    fontSize="18px"
+                    fontWeight="500"
+                    sx={{
+                      color: "white",
+                      letterSpacing: "0.18em",
+                      "&:hover": {
+                        color: theme.palette.secondary.main,
+                      },
+                    }}
+                  >
+                    {item.title}
                   </Typography>
                 </Link>
               </ListItem>
             ))}
-            <ListItem>
+            <ListItem sx={{ marginTop: "244px" }}>
               <Button
                 variant="contained"
                 color="inherit"
                 size="medium"
-                sx={{ width: "85px", height: "40px", borderRadius: "100px", marginLeft: "15px" }}
+                sx={{ width: "85px", height: "40px", borderRadius: "100px" }}
               >
                 <Typography color="primary" align="center" fontSize="16px">
                   登入
