@@ -53,7 +53,7 @@ function StationTable({ data: data }: StationTableProps) {
               <TableCell key={item} align="center">
                 <Typography
                   color="white"
-                  sx={{ fontSize: "16px", fontWeight: 500, [theme.breakpoints.down("sm")]: { fontSize: "16px" } }}
+                  sx={{ fontSize: "18px", fontWeight: 500, [theme.breakpoints.down("sm")]: { fontSize: "16px" } }}
                 >
                   {item}
                 </Typography>
