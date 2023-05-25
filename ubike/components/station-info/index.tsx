@@ -26,7 +26,7 @@ function StationInfo({ cities, data }: StationInfoProps) {
 
   const handleStationSearch = (searchIdx: number): void => {
     if (typeof searchIdx === "number") {
-      const tempData = tableData.map((item, index) =>
+      const tempData = data.map((item, index) =>
         index === searchIdx ? item : { ...item, area: { ...item.area, checked: false }, areaData: [] }
       );
       setSelectStatus(false);
