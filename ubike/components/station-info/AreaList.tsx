@@ -15,7 +15,6 @@ function AreaList({ data, handleList }: AreaListProps) {
 
   const handleSelect = (idx: number) => {
     const checkStatus = data.every((item) => item.area.checked);
-
     if (checkStatus) {
       if (selectAll) setSelectAll(!selectAll);
       handleList(data, idx);

@@ -15,7 +15,7 @@ import { NewDataType } from "../types";
 
 interface SearchBarProps<T> {
   cities: string[];
-  areaData: NewDataType;
+  areaData: NewDataType[];
   handleSearch: (city: string) => void;
 }
 
@@ -62,10 +62,10 @@ function SearchBar<T>({ cities, areaData, handleSearch }: SearchBarProps<T>) {
       <Autocomplete
         id="search-station"
         options={areaData}
-        getOptionLabel={(option) => option.area}
+        getOptionLabel={(option) => option.area.name}
         renderOption={(props, option) => (
-          <li {...props} key={option.area}>
-            {option.area}
+          <li {...props} key={option.area.name}>
+            {option.area.name}
           </li>
         )}
         renderInput={(params) => <TextField {...params} label="搜尋站點" />}
