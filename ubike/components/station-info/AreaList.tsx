@@ -6,43 +6,61 @@ import { NewDataType } from "../types";
 
 interface AreaListProps {
   data: NewDataType[];
+  handleList: (data: NewDataType[], checkboxIdx: number, allSelect?: boolean) => void;
 }
 
-function AreaList({ data }: AreaListProps) {
+function AreaList({ data, handleList }: AreaListProps) {
   const theme = useTheme();
   const [selectAll, setSelectAll] = useState<boolean>(true);
-  const handleSelectAll = () => setSelectAll(!selectAll);
+
+  const handleSelect = (idx: number) => {
+    const checkStatus = data.every((item) => item.area.checked);
+
+    if (checkStatus) {
+      setSelectAll(true);
+      handleList(data, idx, true);
+    } else setSelectAll(false);
+    handleList(data, idx);
+  };
 
   return (
-    <Box display="flex" justifyContent="space-between">
-      <FormGroup>
-        <Box>
-          <FormControlLabel
-            label="全部勾選"
-            control={<Checkbox />}
-            color="primary"
-            checked={selectAll}
-            onChange={handleSelectAll}
-          />
+    <>
+      {data.length === 0 ? (
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Typography>暫無資料</Typography>
         </Box>
-        <Grid container sx={{ width: "500px", [theme.breakpoints.down("md")]: { width: "311px" } }}>
-          {data?.map((item) => (
-            <Grid item sm={3} xs={4} key={item?.area}>
+      ) : (
+        <Box display="flex" justifyContent="space-between">
+          <FormGroup>
+            <Box>
               <FormControlLabel
-                label={<Typography noWrap>{item?.area}</Typography>}
-                control={<Checkbox checked={selectAll && true} />}
+                label="全部勾選"
+                control={<Checkbox />}
                 color="primary"
+                defaultChecked
+                checked={selectAll}
               />
+            </Box>
+            <Grid container sx={{ width: "500px", [theme.breakpoints.down("md")]: { width: "311px" } }}>
+              {data.map((item, idx) => (
+                <Grid item sm={3} xs={4} key={item.area.name}>
+                  <FormControlLabel
+                    label={<Typography noWrap>{item.area.name}</Typography>}
+                    control={<Checkbox checked={selectAll && item.area.checked} onChange={(e) => handleSelect(idx)} />}
+                    color="primary"
+                  />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-      </FormGroup>
-      <Hidden lgDown>
-        <Box alignSelf="flex-end" mr="86px">
-          <Image src={Banner} alt="banner" />
+          </FormGroup>
+          <Hidden lgDown>
+            <Box alignSelf="flex-end" mr="86px">
+              <Image src={Banner} alt="banner" />
+            </Box>
+          </Hidden>
         </Box>
-      </Hidden>
-    </Box>
+      )}
+    </>
   );
 }
 

@@ -19,8 +19,9 @@ function useTaipeiData<T extends ItemDataType>(originData: T[]): NewDataType[] {
    * @param 台北市靜態資料
    * @return 返回縣市行政區
    */
-  function filterArea(data: T[]): string[] {
-    return Array.from(new Set(data.flatMap((item) => (item.sarea ? [item.sarea] : []))));
+  function filterArea(data: T[]): { name: string; checked: boolean }[] {
+    const area = Array.from(new Set(data.flatMap((item) => (item.sarea ? [item.sarea] : []))));
+    return area.map((item) => ({ name: item, checked: true }));
   }
 
   /**
@@ -43,10 +44,10 @@ function useTaipeiData<T extends ItemDataType>(originData: T[]): NewDataType[] {
       const areaResult = filterArea(originData);
       const tempData = dataCleaning(originData);
 
-      const splitData = areaResult.reduce((result, areaName) => {
-        result.push({ area: areaName, areaData: tempData.filter((item) => item.area === areaName) });
+      const splitData = areaResult.reduce((result, areaObj) => {
+        result.push({ area: areaObj, areaData: tempData.filter((item) => item.area === areaObj.name) });
         return result;
-      }, [] as { area: string; areaData: FilterDataType[] }[]);
+      }, [] as { area: { name: string; checked: boolean }; areaData: FilterDataType[] }[]);
 
       setData(splitData);
     }

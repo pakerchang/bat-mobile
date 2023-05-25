@@ -22,7 +22,6 @@ const cities: string[] = [
 
 export default function Home() {
   const taipeiData = useTaipeiData(Data);
-
   return (
     <Box display="flex" flexDirection="column" width="100vw">
       <Header />

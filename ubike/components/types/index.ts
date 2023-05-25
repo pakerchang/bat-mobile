@@ -13,6 +13,6 @@ export interface FilterDataType {
  * @value areaData {array} 行政區內站點
  */
 export interface NewDataType {
-  area: string;
+  area: { name: string, checked: boolean };
   areaData: FilterDataType;
 }
