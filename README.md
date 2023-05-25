@@ -70,5 +70,5 @@ while (drawPrize()) {}
 
 # Q4
 
-[Demo](https://ubike.zeabur.app/)
+[Demo](https://pakerzhang-ubike.zeabur.app/)   
 [ubike](https://github.com/pakerchang/bat-mobile/tree/master/ubike)
