@@ -10,6 +10,7 @@ import {
   TablePagination,
   Typography,
   Paper,
+  useTheme,
 } from "@mui/material";
 import { NewDataType, FilterDataType } from "../types";
 
@@ -20,6 +21,7 @@ interface StationTableProps {
 const TableHeadContent: string[] = ["縣市", "區域", "站點名稱", "可借車輛", "可還空位"];
 
 function StationTable({ data: data }: StationTableProps) {
+  const theme = useTheme();
   const [listData, setListData] = useState<FilterDataType[]>([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -40,13 +42,19 @@ function StationTable({ data: data }: StationTableProps) {
   }, [data]);
 
   return (
-    <TableContainer sx={{ borderRadius: "28px 28px 0 0" }}>
-      <Table>
+    <TableContainer
+      component={Paper}
+      sx={{ borderRadius: "28px 28px 0 0", [theme.breakpoints.down("xs")]: { maxWidth: "311px" } }}
+    >
+      <Table sx={{ width: "1440px%", minWidth: "565px", overflowX: "scroll" }}>
         <TableHead sx={{ bgcolor: "primary.main" }}>
           <TableRow>
             {TableHeadContent.map((item) => (
               <TableCell key={item} align="center">
-                <Typography color="white" sx={{ fontSize: 18, fontWeight: 500 }}>
+                <Typography
+                  color="white"
+                  sx={{ fontSize: "16px", fontWeight: 500, [theme.breakpoints.down("sm")]: { fontSize: "16px" } }}
+                >
                   {item}
                 </Typography>
               </TableCell>
@@ -57,22 +65,36 @@ function StationTable({ data: data }: StationTableProps) {
           {(rowsPerPage > 0 ? listData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : listData).map(
             (list, index: number) => (
               <TableRow key={list.stationsUID} sx={{ bgcolor: index % 2 === 0 ? "#f7f7f7" : "f5f5f5" }}>
-                <TableCell align="center">
-                  <Typography fontSize={16}>{list.city}</Typography>
+                <TableCell align="center" size={theme.breakpoints.down("sm") ? "small" : "medium"}>
+                  <Typography sx={{ fontSize: "16px", [theme.breakpoints.down("sm")]: { fontSize: "14px" } }}>
+                    {list.city}
+                  </Typography>
                 </TableCell>
-                <TableCell align="center">
-                  <Typography fontSize={16}>{list.area}</Typography>
+                <TableCell align="center" size={theme.breakpoints.down("sm") ? "small" : "medium"}>
+                  <Typography sx={{ fontSize: "16px", [theme.breakpoints.down("sm")]: { fontSize: "14px" } }}>
+                    {list.area}
+                  </Typography>
                 </TableCell>
-                <TableCell align="center">
-                  <Typography fontSize={16}>{list.stationsName}</Typography>
+                <TableCell align="center" size={theme.breakpoints.down("sm") ? "small" : "medium"}>
+                  <Typography sx={{ fontSize: "16px", [theme.breakpoints.down("sm")]: { fontSize: "14px" } }}>
+                    {list.stationsName}
+                  </Typography>
                 </TableCell>
-                <TableCell align="center">
-                  <Typography fontSize={16} fontWeight={700} color="primary">
+                <TableCell align="center" size={theme.breakpoints.down("sm") ? "small" : "medium"}>
+                  <Typography
+                    sx={{ fontSize: "16px", [theme.breakpoints.down("sm")]: { fontSize: "14px" } }}
+                    fontWeight={700}
+                    color="primary"
+                  >
                     {list.rentBike}
                   </Typography>
                 </TableCell>
-                <TableCell align="center">
-                  <Typography fontSize={16} fontWeight={700} color="primary">
+                <TableCell align="center" size={theme.breakpoints.down("sm") ? "small" : "medium"}>
+                  <Typography
+                    sx={{ fontSize: "16px", [theme.breakpoints.down("sm")]: { fontSize: "14px" } }}
+                    fontWeight={700}
+                    color="primary"
+                  >
                     {list.emptyPosition}
                   </Typography>
                 </TableCell>
