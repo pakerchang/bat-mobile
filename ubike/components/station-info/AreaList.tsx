@@ -26,8 +26,13 @@ function AreaList({ selectAll, data, handleList }: AreaListProps) {
   return (
     <>
       {data.length === 0 ? (
-        <Box display="flex" justifyContent="center" alignItems="center">
-          <Typography>暫無資料</Typography>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          mt={theme.breakpoints.up("sm") ? "250px" : "50px"}
+        >
+          <Typography variant="h3">暫無資料</Typography>
         </Box>
       ) : (
         <Box display="flex" justifyContent="space-between">
