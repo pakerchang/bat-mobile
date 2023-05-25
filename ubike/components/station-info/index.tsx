@@ -13,7 +13,6 @@ interface StationInfoProps {
 
 type FnCityType = (city: string) => void;
 type FnAreaListType = (newData?: NewDataType[], checkboxIdx?: number, selectAll?: boolean) => void;
-type FnStationSearchType = () => void;
 
 function StationInfo({ cities, data }: StationInfoProps) {
   const theme = useTheme();
@@ -21,6 +20,15 @@ function StationInfo({ cities, data }: StationInfoProps) {
 
   const handleCitySearch: FnCityType = (city) => {
     console.log(city);
+  };
+
+  const handleStationSearch = (searchIdx: number): void => {
+    if (typeof searchIdx === "number") {
+      const tempData = tableData.map((item, index) =>
+        index === searchIdx ? item : { ...item, area: { ...item.area, checked: false }, areaData: [] }
+      );
+      setTableData(tempData);
+    }
   };
 
   const handleAreaListSelect: FnAreaListType = (newData, checkboxIdx, selectAll) => {
@@ -48,8 +56,6 @@ function StationInfo({ cities, data }: StationInfoProps) {
     }
   };
 
-  const handleStationSearch: FnStationSearchType = () => {};
-
   useEffect(() => {
     if (data.length !== 0) setTableData(data);
   }, [data]);
@@ -62,7 +68,12 @@ function StationInfo({ cities, data }: StationInfoProps) {
         </Typography>
       </Box>
       <Box display="flex" alignItems="center">
-        <SearchBar cities={cities} areaData={tableData} handleSearch={handleCitySearch} />
+        <SearchBar
+          cities={cities}
+          areaData={tableData}
+          handleCitySearch={handleCitySearch}
+          handleStationSearch={handleStationSearch}
+        />
       </Box>
       <Box mb="40px">
         <AreaList data={tableData} handleList={handleAreaListSelect} />

@@ -16,17 +16,24 @@ import { NewDataType } from "../types";
 interface SearchBarProps<T> {
   cities: string[];
   areaData: NewDataType[];
-  handleSearch: (city: string) => void;
+  handleCitySearch: (city: string) => void;
+  handleStationSearch: (value: number) => void;
 }
 
-function SearchBar<T>({ cities, areaData, handleSearch }: SearchBarProps<T>) {
+function SearchBar<T>({ cities, areaData, handleCitySearch, handleStationSearch }: SearchBarProps<T>) {
   const theme = useTheme();
-  const [selectData, setSelectData] = useState<NewDataType[]>(areaData);
-  const [selectCity, setCity] = useState("");
+  const [selectCity, setCity] = useState(cities[0]);
 
   const onSelectCity = (e: SelectChangeEvent) => {
     setCity(e.target.value);
-    handleSearch(e.target.value);
+    handleCitySearch(e.target.value);
+  };
+
+  const handleStation = (value: NewDataType | null): void => {
+    if (value !== null) {
+      const valueIdx = areaData.indexOf(value);
+      handleStationSearch(valueIdx);
+    }
   };
 
   return (
@@ -63,13 +70,14 @@ function SearchBar<T>({ cities, areaData, handleSearch }: SearchBarProps<T>) {
         id="search-station"
         options={areaData}
         getOptionLabel={(option) => option.area.name}
+        onChange={(e, value) => handleStation(value)}
         renderOption={(props, option) => (
           <li {...props} key={option.area.name}>
             {option.area.name}
           </li>
         )}
         renderInput={(params) => <TextField {...params} label="搜尋站點" />}
-        disabled={!selectData && true}
+        disabled={!areaData && true}
         sx={{
           width: "277px",
           height: "40px",
