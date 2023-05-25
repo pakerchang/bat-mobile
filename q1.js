@@ -7,7 +7,7 @@
  * 因為偶數在等差中的項數會多出一項，所以再取得 -1 項數上除了去頭還需要去尾，所以當求得 -1 總數時除了首位的 1 還需要將末位的 n 加回來
  */
 
-function caclulate(n) {
+function calculate(n) {
   if (n % 2 === 0) {
     return 1 + ((n - 2) / 2) * -1 + n;
   } else {
@@ -15,6 +15,6 @@ function caclulate(n) {
   }
 }
 
-const calc = caclulate(10);
+const calc = calculate(10);
 
 console.log(calc);
