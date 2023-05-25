@@ -68,7 +68,7 @@ function StationTable({ data: data }: StationTableProps) {
             <TableBody>
               {(rowsPerPage > 0 ? listData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : listData).map(
                 (list, index: number) => (
-                  <TableRow key={list.stationsUID} sx={{ bgcolor: index % 2 === 0 ? "#f7f7f7" : "f5f5f5" }}>
+                  <TableRow key={list.stationsUID} sx={{ bgcolor: index % 2 === 0 ? "#f7f7f7" : "#f5f5f5" }}>
                     <TableCell align="center">
                       <Typography sx={{ fontSize: "16px", [theme.breakpoints.down("sm")]: { fontSize: "14px" } }}>
                         {list.city}
