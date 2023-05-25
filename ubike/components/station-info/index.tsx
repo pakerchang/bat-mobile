@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import SearchBar from "./SearchBar";
 import AreaList from "./AreaList";
 import StationTable from "./StationTable";
@@ -12,8 +12,9 @@ interface StationInfoProps {
 }
 
 function StationInfo({ cities, data }: StationInfoProps) {
+  const theme = useTheme();
   return (
-    <Box display="flex" flexDirection="column" px="124px">
+    <Box display="flex" flexDirection="column" sx={{ px: "124px", [theme.breakpoints.down("md")]: { px: "32px" } }}>
       <Box my="32px">
         <Typography color="primary" sx={{ fontSize: "24px", fontWeight: 700 }}>
           站點資訊

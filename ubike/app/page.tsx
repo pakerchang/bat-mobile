@@ -24,7 +24,7 @@ export default function Home() {
   const taipeiData = useTaipeiData(Data);
 
   return (
-    <Box display="flex" flexDirection="column" width="100vw" height="100vh">
+    <Box display="flex" flexDirection="column" width="100vw">
       <Header />
       <StationInfo cities={cities} data={taipeiData} />
     </Box>

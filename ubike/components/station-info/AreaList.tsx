@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Banner from "@/app/assets/banner.png";
-import { Box, Grid, Checkbox, FormGroup, FormControlLabel, Typography } from "@mui/material";
+import { Box, Grid, Checkbox, FormGroup, FormControlLabel, Typography, Hidden, useTheme } from "@mui/material";
 import { NewDataType } from "../types";
 
 interface AreaListProps {
@@ -9,20 +9,23 @@ interface AreaListProps {
 }
 
 function AreaList({ data }: AreaListProps) {
+  const theme = useTheme();
   const [selectAll, setSelectAll] = useState<boolean>(true);
   const handleSelectAll = () => setSelectAll(!selectAll);
 
   return (
-    <Box width="100%" display="flex" justifyContent="space-between">
+    <Box display="flex" justifyContent="space-between">
       <FormGroup>
-        <FormControlLabel
-          label="全部勾選"
-          control={<Checkbox />}
-          color="primary"
-          checked={selectAll}
-          onChange={handleSelectAll}
-        />
-        <Grid container width="50%" columnSpacing={2}>
+        <Box>
+          <FormControlLabel
+            label="全部勾選"
+            control={<Checkbox />}
+            color="primary"
+            checked={selectAll}
+            onChange={handleSelectAll}
+          />
+        </Box>
+        <Grid container sx={{ width: "500px", [theme.breakpoints.down("md")]: { width: "311px" } }}>
           {data?.map((item) => (
             <Grid item sm={3} xs={4} key={item?.area}>
               <FormControlLabel
@@ -34,9 +37,11 @@ function AreaList({ data }: AreaListProps) {
           ))}
         </Grid>
       </FormGroup>
-      <Box alignSelf="flex-end" width="50%" mr="86px">
-        <Image src={Banner} alt="banner" />
-      </Box>
+      <Hidden lgDown>
+        <Box alignSelf="flex-end" mr="86px">
+          <Image src={Banner} alt="banner" />
+        </Box>
+      </Hidden>
     </Box>
   );
 }
