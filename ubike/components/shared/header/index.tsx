@@ -116,16 +116,7 @@ function Header() {
           sx={{ height: "100%" }}
           PaperProps={{ sx: { height: "100%", bgcolor: theme.palette.primary.main, marginTop: "72px" } }}
         >
-          <List
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              paddingTop: "32px",
-              width: "100%",
-            }}
-          >
+          <List sx={{ marginTop: "32px", marginLeft: "32px", marginBottom: "16px" }}>
             {navbarList.map((item) => (
               <ListItem key={item.title}>
                 <Link href={item.url}>
@@ -134,8 +125,7 @@ function Header() {
                     fontWeight="500"
                     sx={{
                       color: "white",
-                      marginLeft: "32px",
-                      marginBottom: "32px",
+                      letterSpacing: "0.18em",
                       "&:hover": {
                         color: theme.palette.secondary.main,
                       },
@@ -146,12 +136,12 @@ function Header() {
                 </Link>
               </ListItem>
             ))}
-            <ListItem>
+            <ListItem sx={{ marginTop: "244px" }}>
               <Button
                 variant="contained"
                 color="inherit"
                 size="medium"
-                sx={{ width: "85px", height: "40px", borderRadius: "100px", marginLeft: "15px" }}
+                sx={{ width: "85px", height: "40px", borderRadius: "100px" }}
               >
                 <Typography color="primary" align="center" fontSize="16px">
                   登入
