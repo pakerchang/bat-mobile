@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import Header from "@/components/shared/header";
 import StationInfo from "@/components/station-info";
 import Data from "./assets/station-info/ubike.json";
@@ -24,6 +24,7 @@ export default function Home() {
   const taipeiData = useTaipeiData(Data);
   return (
     <Box display="flex" flexDirection="column" width="100vw">
+      <CssBaseline />
       <Header />
       <StationInfo cities={cities} data={taipeiData} />
     </Box>
