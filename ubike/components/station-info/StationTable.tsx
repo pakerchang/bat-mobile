@@ -50,7 +50,7 @@ function StationTable({ data: data }: StationTableProps) {
           component={Paper}
           sx={{ borderRadius: "28px 28px 0 0", [theme.breakpoints.down("xs")]: { maxWidth: "311px" } }}
         >
-          <Table sx={{ width: "1440px%", minWidth: "565px", overflowX: "scroll" }}>
+          <Table sx={{ width: "100x%", minWidth: "565px", overflowX: "scroll" }}>
             <TableHead sx={{ bgcolor: "primary.main" }}>
               <TableRow>
                 {TableHeadContent.map((item) => (
