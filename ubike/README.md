@@ -5,7 +5,6 @@
 資料顯示狀控制邏輯存放在 `components/station-info/index.tsx`
 
 - Table:
-  - 排序
   - 分頁控制
 - hooks:
   - useTaipeiData
