@@ -12,17 +12,17 @@ import {
   Paper,
   useTheme,
 } from "@mui/material";
-import { NewDataType, FilterDataType } from "../types";
+import { StationDataType, TableDataType } from "../types";
 
 interface StationTableProps {
-  data: NewDataType[];
+  data: StationDataType[];
 }
 
 const TableHeadContent: string[] = ["縣市", "區域", "站點名稱", "可借車輛", "可還空位"];
 
 function StationTable({ data: data }: StationTableProps) {
   const theme = useTheme();
-  const [listData, setListData] = useState<FilterDataType[]>([]);
+  const [listData, setListData] = useState<TableDataType[]>([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -35,7 +35,7 @@ function StationTable({ data: data }: StationTableProps) {
 
   useEffect(() => {
     if (data) {
-      let mergeAreaData: FilterDataType[] = [];
+      let mergeAreaData: TableDataType[] = [];
       data.forEach((item) => mergeAreaData.push(...item.areaData));
       setListData(mergeAreaData);
     }

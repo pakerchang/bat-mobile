@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Banner from "@/app/assets/banner.png";
 import { Box, Grid, Checkbox, FormGroup, FormControlLabel, Typography, Hidden, useTheme } from "@mui/material";
-import { NewDataType } from "../types";
+import { StationDataType } from "../types";
 
 interface AreaListProps {
   selectAll: boolean;
-  data: NewDataType[];
-  handleList: (data?: NewDataType[], checkboxIdx?: number, selectAll?: boolean) => void;
+  data: StationDataType[];
+  handleList: (data?: StationDataType[], checkboxIdx?: number, selectAll?: boolean) => void;
 }
 
 function AreaList({ selectAll, data, handleList }: AreaListProps) {

@@ -4,20 +4,20 @@ import { Box, Typography, useTheme } from "@mui/material";
 import SearchBar from "./SearchBar";
 import AreaList from "./AreaList";
 import StationTable from "./StationTable";
-import { NewDataType } from "../types";
+import { StationDataType } from "../types";
 
 interface StationInfoProps {
   cities: string[];
-  data: NewDataType[];
+  data: StationDataType[];
 }
 
 type FnCityType = (city: string) => void;
-type FnAreaListType = (newData?: NewDataType[], checkboxIdx?: number, selectAll?: boolean) => void;
+type FnAreaListType = (newData?: StationDataType[], checkboxIdx?: number, selectAll?: boolean) => void;
 
 function StationInfo({ cities, data }: StationInfoProps) {
   const theme = useTheme();
   const [areaSelectStatus, setSelectStatus] = useState<boolean>(true);
-  const [tableData, setTableData] = useState<NewDataType[]>([]);
+  const [tableData, setTableData] = useState<StationDataType[]>([]);
 
   const handleCitySearch: FnCityType = (city) => {
     if (city !== "台北市") return setTableData([]);

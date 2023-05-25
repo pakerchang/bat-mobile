@@ -11,11 +11,11 @@ import {
   SelectChangeEvent,
   useTheme,
 } from "@mui/material";
-import { NewDataType } from "../types";
+import { StationDataType } from "../types";
 
 interface SearchBarProps<T> {
   cities: string[];
-  areaData: NewDataType[];
+  areaData: StationDataType[];
   handleCitySearch: (city: string) => void;
   handleStationSearch: (value: number) => void;
 }
@@ -29,7 +29,7 @@ function SearchBar<T>({ cities, areaData, handleCitySearch, handleStationSearch 
     handleCitySearch(e.target.value);
   };
 
-  const handleStation = (value: NewDataType | null): void => {
+  const handleStation = (value: StationDataType | null): void => {
     if (value !== null) {
       const valueIdx = areaData.indexOf(value);
       handleStationSearch(valueIdx);

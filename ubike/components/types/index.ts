@@ -1,4 +1,4 @@
-export interface FilterDataType {
+export interface TableDataType {
   stationsUID: number;
   city: string;
   area: string;
@@ -12,7 +12,7 @@ export interface FilterDataType {
  * @value area {string} 行政區
  * @value areaData {array} 行政區內站點
  */
-export interface NewDataType {
+export interface StationDataType {
   area: { name: string, checked: boolean };
-  areaData: FilterDataType[]
+  areaData: TableDataType[]
 }
